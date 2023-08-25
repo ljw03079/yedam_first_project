@@ -194,6 +194,7 @@ public class ProductManager {// 제품관리 메뉴
 // https://mybatis.org/mybatis-3/ko/getting-started.html
 // https://mvnrepository.com/artifact/org.mybatis/mybatis/3.5.13
 // https://xianeml.tistory.com/44
+// https://google.github.io/styleguide/javaguide.html
 
 //ctl shift x -> 대문자
 //maven, mybatis
