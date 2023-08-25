@@ -201,3 +201,10 @@ public class ProductManager {// 제품관리 메뉴
 //db관련 프로젝트: service, serviceImpl, mapper, menu 4-5가지 정도로 만듦
 
 //정보통신망법, 개인정보보호법
+
+//select * from product;
+//commit;
+//
+//insert into product values('0001','TV',250000,'삼성70인치');
+//
+//select * from product where product_id = '0001';
