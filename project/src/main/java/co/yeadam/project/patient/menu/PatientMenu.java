@@ -87,6 +87,7 @@ public class PatientMenu {
 				break;
 			default:
 				System.out.println("[잘못된 작업번호 입니다.]");
+				System.out.println();
 			}
 		} while (!b);
 	}
@@ -100,8 +101,10 @@ public class PatientMenu {
 		if (n != 0) {
 			System.out.println("[환자 삭제 성공]");
 			patients.remove(p);
+			System.out.println();
 		} else {
 			System.out.println("[환자 삭제 실패]");
+			System.out.println();
 		}
 
 	}
@@ -138,13 +141,16 @@ public class PatientMenu {
 			return;
 		default:
 			System.out.println("[잘못된 작업번호 입니다.]");
+			System.out.println();
 		}
 		int n = dao.patientUpdate(p);
 		if (n != 0) {
 			System.out.println("[환자 정보 수정 성공]");
 			patients.set(p.getPatientId()-1,p);
+			System.out.println();
 		} else {
 			System.out.println("[환자 정보 수정 실패]");
+			System.out.println();
 		}
 	}
 
@@ -196,8 +202,10 @@ public class PatientMenu {
 		if(n != 0) {
 			System.out.println("[환자 등록 완료]");
 			patients.add(p);
+			System.out.println();
 		}else {
 			System.out.println("[환자 등록 실패]");
+			System.out.println();
 		}
 	}
 	
@@ -212,7 +220,27 @@ public class PatientMenu {
 	}
 	
 	private void patientSelect() {
-		
+		System.out.print("조회할 환자 번호를 선택하세요>> ");
+		int pi = sc.nextInt();sc.nextLine();
+		p.setPatientId(pi);
+		p = dao.patientSelect(p);
+		if(p != null) {
+			System.out.println("-----------------------------");
+			System.out.println("환자번호: "+p.getPatientId());
+			System.out.println("이름: "+p.getPatientName());
+			System.out.println("성별: "+p.getPatientGender());
+			System.out.println("나이: "+p.getPatientAge());
+			System.out.println("연락처: "+p.getPatientTel());
+			System.out.println("키: "+p.getPatientHeight());
+			System.out.println("몸무게: "+p.getPatientWeight());
+			System.out.println("주민번호: "+p.getPatientResidentNumber());
+			System.out.println("담당의번호: "+p.getEmployeeNum());
+			System.out.println("-----------------------------");
+			System.out.println();
+		}else {
+			System.out.println("[입력하신 환자번호는 존재하지 않습니다]");
+			System.out.println();
+		}
 	}
 
 	private void patientSelectList() {
@@ -224,27 +252,30 @@ public class PatientMenu {
 			System.out.println("============================");
 			System.out.println("         날 짜 별 조 회        ");
 			System.out.println("============================");
-			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  주치의  |");
+			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  담당의번호  |");
 			System.out.println("-------------------------------------------");
+			System.out.println();
 			break;
 		case 2:
 			System.out.println("============================");
 			System.out.println("        환 자 전 체 조 회       ");
 			System.out.println("============================");
-			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  주치의  |");
+			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  담당의번호  |");
 			System.out.println("-------------------------------------------");
 			for (PatientVO p : patients) {
 				System.out.print("  " + p.getPatientId() + "\t");
 				System.out.print("    " + p.getPatientName() + " ");
 				System.out.print("    " + p.getPatientGender() + "\t");
 				System.out.print("    " + p.getPatientAge() + "\t");
-				System.out.println("    ");
+				System.out.println("    " + p.getEmployeeNum());
 			}
+			System.out.println();
 			break;
 		case 3:
 			break;
 		default:
 			System.out.println("[잘못된 작업번호 입니다.]");
+			System.out.println();
 		}
 	}
 }

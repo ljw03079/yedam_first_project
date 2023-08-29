@@ -66,6 +66,7 @@ public class ChartMenu {
 				break;
 			default:
 				System.out.println("[잘못된 작업번호 입니다.]");
+				System.out.println();
 			}
 		}while(!b);
 	}
@@ -88,8 +89,10 @@ public class ChartMenu {
 		int n = dao.chartDelete(c);
 		if (n != 0) {
 			System.out.println("[차트 삭제 성공]");
+			System.out.println();
 		} else {
 			System.out.println("[차트 삭제 실패]");
+			System.out.println();
 		}
 	}
 
@@ -123,13 +126,17 @@ public class ChartMenu {
 			return;
 		default:
 			System.out.println("[잘못된 작업번호 입니다.]");
+			System.out.println();
+			return;
 		}
 		int n = dao.chartUpdate(c);
 		
 		if(n != 0) {
 			System.out.println("[차트 수정 성공]");
+			System.out.println();
 		}else {
 			System.out.println("[차트 수정 실패]");
+			System.out.println();
 		}
 	}
 
@@ -187,8 +194,10 @@ public class ChartMenu {
 		if(n != 0) {
 			System.out.println("[환자 등록 완료]");
 			charts.add(c);
+			System.out.println();
 		}else {
 			System.out.println("[환자 등록 실패]");
+			System.out.println();
 		}
 	}
 
@@ -213,7 +222,9 @@ public class ChartMenu {
 			}
 		}else {
 			System.out.println("[입력하신 번호는 존재하지 않습니다]");
+			System.out.println();
 		}
 		System.out.println("-----------------------------");
+		System.out.println();
 	}
 }

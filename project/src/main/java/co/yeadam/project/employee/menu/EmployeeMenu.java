@@ -63,6 +63,7 @@ public class EmployeeMenu {
 					break;
 				default:
 					System.out.println("[잘못된 작업번호 입니다.]");
+					System.out.println();
 				}
 			}while(!b);
 		}
@@ -85,12 +86,15 @@ public class EmployeeMenu {
 					int n = dao.employeeDelete(e);
 					if(n != 0) {
 						System.out.println("[계정 삭제 성공]");
+						System.out.println();
 					}else {
 						System.out.println("[계정 삭제 실패]");
+						System.out.println();
 					}
 				}
 			} else {
 				System.out.println("[아이디 또는 패스워드가 일치하지 않습니다]");
+				System.out.println();
 			}
 		}
 
@@ -137,16 +141,20 @@ public class EmployeeMenu {
 					return;
 				default:
 					System.out.println("[잘못된 작업번호 입니다.]");
+					System.out.println();
 				}
 				int n = dao.employeeUpdate(e);
 				
 				if(n != 0) {
 					System.out.println("[내 정보 수정 성공]");
+					System.out.println();
 				}else {
 					System.out.println("[내 정보 수정 실패]");
+					System.out.println();
 				}
 			} else {
 				System.out.println("[아이디 또는 패스워드가 일치하지 않습니다]");
+				System.out.println();
 			}
 		}
 
@@ -164,8 +172,10 @@ public class EmployeeMenu {
 				System.out.println("직업: "+employee.getEmployeeJob());
 				System.out.println("직원번호: "+employee.getEmployeeNum());
 				System.out.println("-----------------------------");
+				System.out.println();
 			}else {
 				System.out.println("[입력하신 이름은 존재하지 않습니다]");
+				System.out.println();
 			}
 		}
 
@@ -182,6 +192,7 @@ public class EmployeeMenu {
 				System.out.print("\t"+e.getEmployeeJob()+"\t");
 				System.out.println("\t"+e.getEmployeeNum()+"\t");
 			}
+			System.out.println();
 		}
 		
 		public int getMaxNum() {

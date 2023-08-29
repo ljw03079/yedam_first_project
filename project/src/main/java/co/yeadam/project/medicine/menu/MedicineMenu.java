@@ -44,6 +44,7 @@ public class MedicineMenu {
 				break;
 			default:
 				System.out.println("[잘못된 작업번호 입니다.]");
+				System.out.println();
 			}
 		}while(!b);
 	}
@@ -67,6 +68,7 @@ public class MedicineMenu {
 			System.out.println("[입력하신 약물은 존재하지 않습니다]");
 		}
 		System.out.println("-----------------------------");
+		System.out.println();
 	}
 
 	private void medicineSelectList() {
@@ -81,5 +83,6 @@ public class MedicineMenu {
 			System.out.print("\t"+m.getMedicineDose()+"\t");
 			System.out.println("\t"+m.getPharmCompany()+"\t");
 		}
+		System.out.println();
 	}
 }

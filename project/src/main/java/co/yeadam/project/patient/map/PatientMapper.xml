@@ -8,9 +8,7 @@
 	<select id="patientSelect"
 		resultType="co.yeadam.project.patient.service.PatientVO">
 		SELECT * FROM PATIENT
-		JOIN CHART ON PATIENT.PATIENT_ID =
-		CHART.PATIENT_ID
-		WHERE PATIENT.PATIENT_ID = #{patientId}
+		WHERE PATIENT_ID = #{patientId}
 	</select>
 	<select id="employeeNameSelect"
 		resultType="co.yeadam.project.patient.service.PatientVO">
