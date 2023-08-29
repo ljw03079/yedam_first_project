@@ -7,5 +7,6 @@ public class EmployeeVO {
 	private String employeeId;
 	private String employeePassword;
 	private String employeeName;
-	private String employee_job;
+	private String employeeJob;
+	private int employeeNum;
 }

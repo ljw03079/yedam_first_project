@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yeadam.project.patient.map.PatientMapper">
+<select id="patientSelectList" resultType="co.yeadam.project.patient.service.PatientVO">
+	SELECT * FROM PATIENT
+</select>
+<select id="patientSelect" resultType="co.yeadam.project.patient.service.PatientVO">
+	SELECT * FROM PATIENT
+	JOIN CHART ON PATIENT.PATIENT_ID = CHART.PATIENT_ID
+	WHERE PATIENT.PATIENT_ID = #{patientId}
+</select>
+<select id="employeeNameSelect" resultType="co.yeadam.project.patient.service.PatientVO">
+	SELECT EMPLOYEE.EMPLOYEE_NAME FROM EMPLOYEE
+	JOIN PATIENT ON EMPLOYEE.EMPLOYEE_NUM = PATIENT.EMPLOYEE_NUM
+	WHERE PATIENT.PATIENT_ID = #{patientId}
+</select>
+<insert id="patientInsert" parameterType="co.yeadam.project.patient.service.PatientVO">
+	INSERT INTO PATIENT (PATIENT_ID, PATIENT_NAME, PATIENT_GENDER, PATIENT_RESIDENT_NUMBER, PATIENT_AGE, EMPLOYEE_NUM)
+	VALUES (#{patientId}, #{patientName}, #{patientGender}, #{patientResidentNumber}, #{patientAge}, #{employeeNum})
+</insert>
+<update id="patientUpdate" parameterType="co.yeadam.project.patient.service.PatientVO">
+	UPDATE PATIENT
+	<set>
+		<if test="patientTel != null">PATIENT_TEL = #{patientTel}</if>
+		<if test="patientHeight != null">PATIENT_HEIGHT = #{patientHeight}</if>
+		<if test="patientWeight != null">PATIENT_WEIGHT = #{patientWeight}</if>
+	</set>
+	WHERE PATIENT_ID = #{patientId}
+</update>
+<delete id="patientDelete" parameterType="co.yeadam.project.patient.service.PatientVO">
+	DELETE FROM PATIENT WHERE PATIENT_ID = #{patientId}
+</delete>
+</mapper>
