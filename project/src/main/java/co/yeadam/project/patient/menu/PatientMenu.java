@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import co.yeadam.project.employee.service.EmployeeService;
+import co.yeadam.project.employee.service.EmployeeVO;
+import co.yeadam.project.employee.serviceImpl.EmployeeServiceImpl;
 import co.yeadam.project.patient.service.PatientService;
 import co.yeadam.project.patient.service.PatientVO;
 import co.yeadam.project.patient.serviceImpl.PatientServiceImpl;
@@ -12,7 +15,9 @@ import co.yeadam.project.patient.serviceImpl.PatientServiceImpl;
 public class PatientMenu {
 	private Scanner sc = new Scanner(System.in);
 	private PatientService dao = new PatientServiceImpl();
+	private EmployeeService edao = new EmployeeServiceImpl();
 	List<PatientVO> patients = dao.patientSelectList();
+	List<EmployeeVO> employees = edao.employeeSelectList();
 	PatientVO p = new PatientVO();
 	Date date = new Date();
 	SimpleDateFormat sdfY = new SimpleDateFormat("yyyy");
@@ -94,6 +99,7 @@ public class PatientMenu {
 		int n = dao.patientDelete(p);
 		if (n != 0) {
 			System.out.println("[환자 삭제 성공]");
+			patients.remove(p);
 		} else {
 			System.out.println("[환자 삭제 실패]");
 		}
@@ -136,6 +142,7 @@ public class PatientMenu {
 		int n = dao.patientUpdate(p);
 		if (n != 0) {
 			System.out.println("[환자 정보 수정 성공]");
+			patients.set(p.getPatientId()-1,p);
 		} else {
 			System.out.println("[환자 정보 수정 실패]");
 		}
@@ -170,6 +177,11 @@ public class PatientMenu {
 		
 		p.getPatientResidentNumber().replace("-", "");
 		int birthY = Integer.parseInt(p.getPatientResidentNumber().substring(0, 2));
+		if(birthY > 23) {
+			birthY = birthY + 1900;
+		}else {
+			birthY = birthY +2000;
+		}
 		int age = Integer.parseInt(sdfY.format(date)) - birthY;
 		p.setPatientAge(age);
 		
@@ -183,6 +195,7 @@ public class PatientMenu {
 		int n = dao.patientInsert(p);
 		if(n != 0) {
 			System.out.println("[환자 등록 완료]");
+			patients.add(p);
 		}else {
 			System.out.println("[환자 등록 실패]");
 		}
@@ -211,21 +224,21 @@ public class PatientMenu {
 			System.out.println("============================");
 			System.out.println("         날 짜 별 조 회        ");
 			System.out.println("============================");
-			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  주치의번호  |");
-			System.out.println("----------------------------------------------");
+			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  주치의  |");
+			System.out.println("-------------------------------------------");
 			break;
 		case 2:
 			System.out.println("============================");
 			System.out.println("        환 자 전 체 조 회       ");
 			System.out.println("============================");
-			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  주치의번호  |");
-			System.out.println("----------------------------------------------");
+			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  주치의  |");
+			System.out.println("-------------------------------------------");
 			for (PatientVO p : patients) {
 				System.out.print("  " + p.getPatientId() + "\t");
 				System.out.print("    " + p.getPatientName() + " ");
 				System.out.print("    " + p.getPatientGender() + "\t");
 				System.out.print("    " + p.getPatientAge() + "\t");
-//				System.out.println("    "+dao.employeeNameSelect(p));
+				System.out.println("    ");
 			}
 			break;
 		case 3:

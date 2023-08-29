@@ -2,16 +2,20 @@ package co.yeadam.project;
 
 import java.util.Scanner;
 
+import co.yeadam.project.chart.menu.ChartMenu;
 import co.yeadam.project.common.SHA256;
 import co.yeadam.project.employee.menu.EmployeeMenu;
 import co.yeadam.project.employee.service.EmployeeService;
 import co.yeadam.project.employee.service.EmployeeVO;
 import co.yeadam.project.employee.serviceImpl.EmployeeServiceImpl;
+import co.yeadam.project.medicine.menu.MedicineMenu;
 import co.yeadam.project.patient.menu.PatientMenu;
 
 public class MainMenu {
 	private EmployeeMenu em = new EmployeeMenu();
 	private PatientMenu pm = new PatientMenu();
+	private MedicineMenu mm = new MedicineMenu();
+	private ChartMenu cm = new ChartMenu();
 	private EmployeeService dao = new EmployeeServiceImpl();
 	EmployeeVO vo = new EmployeeVO();
 	private Scanner sc = new Scanner(System.in);
@@ -44,9 +48,13 @@ public class MainMenu {
 					pm.run();
 					break;
 				case 3:
+					mm.run();
 					break;
 				case 4:
-					b= true;
+					cm.run();
+					break;
+				case 5:
+					b=true;
 					sc.close();
 					System.out.println("[시스템을 종료합니다]");
 					break;
@@ -66,7 +74,7 @@ public class MainMenu {
 			int first = sc.nextInt();
 			sc.nextLine();
 			if (first == 1) {
-				System.out.print("아이디(이메일)을 입력하세요>> ");
+				System.out.print("아이디를 입력하세요>> ");
 				vo.setEmployeeId(sc.nextLine());
 				System.out.print("패스워드를 입력하세요>> ");
 				vo.setEmployeePassword(sc.nextLine());
@@ -86,7 +94,7 @@ public class MainMenu {
 				System.out.println("============================");
 				System.out.println("           Register         ");
 				System.out.println("============================");
-				System.out.print("아이디(이메일)을 입력하세요>> ");
+				System.out.print("아이디를 입력하세요>> ");
 				registerVo.setEmployeeId(sc.nextLine());
 				System.out.print("패스워드를 입력하세요>> ");
 				registerVo.setEmployeePassword(sc.nextLine());

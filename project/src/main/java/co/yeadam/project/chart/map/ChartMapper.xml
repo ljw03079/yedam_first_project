@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yeadam.project.chart.map.ChartMapper">
+<select id="chartSelect" resultType="co.yeadam.project.chart.service.ChartVO">
+	SELECT * FROM CHART
+	WHERE PATIENT_ID = #{patientId}
+</select>
+<insert id="chartInsert" parameterType="co.yeadam.project.chart.service.ChartVO">
+	INSERT INTO CHART (CHART_CONTENT, NEXT_VISIT_DATE, DISEASE, PATIENT_ID, EMPLOYEE_NUM, MEDICINE_NAME, MEDICINE_DOSE)
+	VALUES (#{chartContent},#{nextVisitDate},#{disease},#{patientId},#{employeeNum},#{medicineName},#{medicineDose})
+</insert>
+<update id="chartUpdate" parameterType="co.yeadam.project.chart.service.ChartVO">
+	UPDATE CHART
+	<set>
+		<if test="chartContent != null">CHART_CONTENT = #{chartContent}</if>
+		<if test="nextVisitDate != null">NEXT_VISIT_DATE = #{nextVisitDate}</if>
+		<if test="medicineName != null">MEDICINE_NAME = #{medicineName}</if>
+		<if test="medicineDose != null">MEDICINE_DOSE = #{medicineDose}</if>
+	</set>
+	WHERE PATIENT_ID = #{patientId}
+	AND VISIT_DATE = #{visitDate}
+	AND EMPLOYEE_NUM = #{employeeNum}
+</update>
+<delete id="chartDelete" parameterType="co.yeadam.project.chart.service.ChartVO">
+	DELETE FROM CHART
+	WHERE PATIENT_ID = #{patientId}
+	AND VISIT_DATE = #{visitDate}
+	AND EMPLOYEE_NUM = #{employeeNum}
+</delete>
+</mapper>

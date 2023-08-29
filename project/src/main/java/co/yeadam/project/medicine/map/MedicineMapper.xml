@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yeadam.project.medicine.map.MedicineMapper">
+	<select id="medicineSelectList"
+		resultType="co.yeadam.project.medicine.service.MedicineVO">
+		SELECT * FROM MEDICINE
+	</select>
+	<select id="medicineSelect" resultType="co.yeadam.project.medicine.service.MedicineVO">
+		SELECT * FROM MEDICINE
+		WHERE MEDICINE_NAME = #{medicineName}
+	</select>
+</mapper>

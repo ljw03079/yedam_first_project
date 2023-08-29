@@ -38,9 +38,4 @@ public class PatientServiceImpl implements PatientService {
 		// TODO Auto-generated method stub
 		return map.patientDelete(vo);
 	}
-	@Override
-	public String employeeNameSelect(PatientVO vo) {
-		// TODO Auto-generated method stub
-		return map.employeeNameSelect(vo);
-	}
 }

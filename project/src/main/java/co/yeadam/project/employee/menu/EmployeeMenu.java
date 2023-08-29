@@ -69,7 +69,7 @@ public class EmployeeMenu {
 
 		private void EmployeeDelete() {
 			EmployeeVO employee = new EmployeeVO();
-			System.out.print("아이디(이메일)을 입력하세요>> ");
+			System.out.print("아이디를 입력하세요>> ");
 			employee.setEmployeeId(sc.nextLine());
 			System.out.print("패스워드를 입력하세요>> ");
 			employee.setEmployeePassword(sc.nextLine());
@@ -96,7 +96,7 @@ public class EmployeeMenu {
 
 		private void EmployeeUpdate() {
 			EmployeeVO employee = new EmployeeVO();
-			System.out.print("아이디(이메일)을 입력하세요>> ");
+			System.out.print("아이디를 입력하세요>> ");
 			employee.setEmployeeId(sc.nextLine());
 			System.out.print("패스워드를 입력하세요>> ");
 			employee.setEmployeePassword(sc.nextLine());
@@ -134,7 +134,7 @@ public class EmployeeMenu {
 					}
 					break;
 				case 4:
-					break;
+					return;
 				default:
 					System.out.println("[잘못된 작업번호 입니다.]");
 				}
@@ -173,11 +173,11 @@ public class EmployeeMenu {
 			System.out.println("============================");
 			System.out.println("        직 원 전 체 조 회       ");
 			System.out.println("============================");
-			System.out.println("  \t아이디\t\t|\t이름\t |\t직업\t |\t직원번호\t |");
-			System.out.println("--------------------------------------------------------------------------");
+			System.out.println("\t아이디\t|\t이름\t|\t직업\t|\t직원번호\t|");
+			System.out.println("-----------------------------------------------------------------");
 			
 			for(EmployeeVO e : employees) {
-				System.out.print(e.getEmployeeId()+"\t");
+				System.out.print("\t"+e.getEmployeeId()+"\t");
 				System.out.print("\t"+e.getEmployeeName()+"\t");
 				System.out.print("\t"+e.getEmployeeJob()+"\t");
 				System.out.println("\t"+e.getEmployeeNum()+"\t");
