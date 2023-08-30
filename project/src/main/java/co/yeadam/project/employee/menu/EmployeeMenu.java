@@ -11,7 +11,8 @@ import co.yeadam.project.employee.serviceImpl.EmployeeServiceImpl;
 public class EmployeeMenu {
 		private Scanner sc = new Scanner(System.in);
 		private EmployeeService dao = new EmployeeServiceImpl();
-		List<EmployeeVO> employees = dao.employeeSelectList();
+		List<EmployeeVO> employees = null;
+		
 		private SHA256 sha256 = new SHA256();
 		
 		private void EmployeeTitle() {
@@ -193,6 +194,7 @@ public class EmployeeMenu {
 		}
 
 		private void EmployeeSelectList() {
+			employees = dao.employeeSelectList();
 			System.out.println("============================");
 			System.out.println("        직 원 전 체 조 회       ");
 			System.out.println("============================");
@@ -210,9 +212,11 @@ public class EmployeeMenu {
 		}
 		
 		public int getMaxNum() {
+			employees = dao.employeeSelectList();
 			int num = 0;
 			for (int i = 0; i < employees.size(); i++) {
 				if (employees.get(i).getEmployeeNum() > num) {
+					System.out.println(employees.get(i).getEmployeeNum());
 					num = employees.get(i).getEmployeeNum();
 				}
 			}

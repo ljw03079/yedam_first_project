@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import co.yeadam.project.Login;
 import co.yeadam.project.chart.service.ChartService;
 import co.yeadam.project.chart.service.ChartVO;
 import co.yeadam.project.chart.serviceImpl.ChartServiceImpl;
@@ -22,7 +21,6 @@ public class ChartMenu {
 	List<ChartVO> charts = dao.chartSelect(c);
 	List<EmployeeVO> employees = edao.employeeSelectList();
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	private Login log = new Login();
 	
 	
 	private void Title() {
