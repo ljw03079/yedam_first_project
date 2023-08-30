@@ -8,5 +8,4 @@ public interface ChartMapper {
 	List<ChartVO> chartSelect(ChartVO vo);
 	int chartInsert(ChartVO vo);
 	int chartUpdate(ChartVO vo);
-	int chartDelete(ChartVO vo);
 }

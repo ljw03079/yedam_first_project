@@ -9,8 +9,8 @@ public class PatientVO {
 	private String patientGender;
 	private String patientResidentNumber;
 	private String patientTel;
-	private String patientHeight;
-	private String patientWeight;
+	private double patientHeight;
+	private double patientWeight;
 	private int patientAge;
 	private int employeeNum;
 }

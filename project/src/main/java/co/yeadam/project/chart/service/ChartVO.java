@@ -4,6 +4,7 @@ import java.util.Date;
 
 import lombok.Data;
 
+
 @Data
 public class ChartVO {
 	private String chartContent;
@@ -13,5 +14,6 @@ public class ChartVO {
 	private int patientId;
 	private int employeeNum;
 	private String medicineName;
-	private String medicineDose;
+	private int medicineDose;
+	private String medicineMethod;
 }

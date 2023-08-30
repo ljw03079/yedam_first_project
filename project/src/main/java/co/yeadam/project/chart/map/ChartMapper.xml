@@ -6,25 +6,20 @@
 	WHERE PATIENT_ID = #{patientId}
 </select>
 <insert id="chartInsert" parameterType="co.yeadam.project.chart.service.ChartVO">
-	INSERT INTO CHART (CHART_CONTENT, NEXT_VISIT_DATE, DISEASE, PATIENT_ID, EMPLOYEE_NUM, MEDICINE_NAME, MEDICINE_DOSE)
-	VALUES (#{chartContent},#{nextVisitDate},#{disease},#{patientId},#{employeeNum},#{medicineName},#{medicineDose})
+	INSERT INTO CHART (CHART_CONTENT, VISIT_DATE, NEXT_VISIT_DATE, DISEASE, PATIENT_ID, EMPLOYEE_NUM, MEDICINE_NAME, MEDICINE_DOSE, MEDICINE_METHOD)
+	VALUES (#{chartContent}, #{visitDate}, #{nextVisitDate}, #{disease}, #{patientId}, #{employeeNum}, #{medicineName}, #{medicineDose}, #{medicineMethod})
 </insert>
 <update id="chartUpdate" parameterType="co.yeadam.project.chart.service.ChartVO">
 	UPDATE CHART
 	<set>
-		<if test="chartContent != null">CHART_CONTENT = #{chartContent}</if>
-		<if test="nextVisitDate != null">NEXT_VISIT_DATE = #{nextVisitDate}</if>
-		<if test="medicineName != null">MEDICINE_NAME = #{medicineName}</if>
-		<if test="medicineDose != null">MEDICINE_DOSE = #{medicineDose}</if>
+		<if test="chartContent != null">CHART_CONTENT = #{chartContent},</if>
+		<if test="nextVisitDate != null">NEXT_VISIT_DATE = #{nextVisitDate},</if>
+		<if test="medicineName != null">MEDICINE_NAME = #{medicineName},</if>
+		<if test="medicineDose != null">MEDICINE_DOSE = #{medicineDose},</if>
+		<if test="medicineMethod != null">MEDICINE_METHOD = #{medicineMethod}</if>
 	</set>
 	WHERE PATIENT_ID = #{patientId}
 	AND VISIT_DATE = #{visitDate}
 	AND EMPLOYEE_NUM = #{employeeNum}
 </update>
-<delete id="chartDelete" parameterType="co.yeadam.project.chart.service.ChartVO">
-	DELETE FROM CHART
-	WHERE PATIENT_ID = #{patientId}
-	AND VISIT_DATE = #{visitDate}
-	AND EMPLOYEE_NUM = #{employeeNum}
-</delete>
 </mapper>

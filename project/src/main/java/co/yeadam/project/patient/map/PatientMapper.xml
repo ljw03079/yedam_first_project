@@ -10,27 +10,17 @@
 		SELECT * FROM PATIENT
 		WHERE PATIENT_ID = #{patientId}
 	</select>
-	<select id="employeeNameSelect"
-		resultType="co.yeadam.project.patient.service.PatientVO">
-		SELECT EMPLOYEE.EMPLOYEE_NAME
-		FROM EMPLOYEE, PATIENT
-		WHERE EMPLOYEE.EMPLOYEE_NUM = PATIENT.EMPLOYEE_NUM
-		AND PATIENT.PATIENT_ID = #{patientId}
-	</select>
 	<insert id="patientInsert"
 		parameterType="co.yeadam.project.patient.service.PatientVO">
-		INSERT INTO PATIENT (PATIENT_ID, PATIENT_NAME,
-		PATIENT_GENDER,
-		PATIENT_RESIDENT_NUMBER, PATIENT_AGE, EMPLOYEE_NUM)
-		VALUES (#{patientId}, #{patientName}, #{patientGender},
-		#{patientResidentNumber}, #{patientAge}, #{employeeNum})
+		INSERT INTO PATIENT (PATIENT_ID, PATIENT_NAME, PATIENT_GENDER, PATIENT_RESIDENT_NUMBER, PATIENT_AGE, EMPLOYEE_NUM)
+		VALUES (#{patientId}, #{patientName}, #{patientGender}, #{patientResidentNumber}, #{patientAge}, #{employeeNum})
 	</insert>
 	<update id="patientUpdate"
 		parameterType="co.yeadam.project.patient.service.PatientVO">
 		UPDATE PATIENT
 		<set>
-			<if test="patientHeight != null">PATIENT_HEIGHT = #{patientHeight}</if>
-			<if test="patientWeight != null">PATIENT_WEIGHT = #{patientWeight}</if>
+			<if test="patientHeight != null">PATIENT_HEIGHT = #{patientHeight},</if>
+			<if test="patientWeight != null">PATIENT_WEIGHT = #{patientWeight},</if>
 			<if test="patientTel != null">PATIENT_TEL = #{patientTel}</if>
 		</set>
 		WHERE PATIENT_ID = #{patientId}
@@ -39,4 +29,10 @@
 		parameterType="co.yeadam.project.patient.service.PatientVO">
 		DELETE FROM PATIENT WHERE PATIENT_ID = #{patientId}
 	</delete>
+	<select id="patientJoin" resultType="Map">
+		SELECT C.NEXT_VISIT_DATE, P.PATIENT_ID, P.PATIENT_NAME, P.PATIENT_GENDER, P.PATIENT_AGE, P.EMPLOYEE_NUM, C.DISEASE
+		FROM PATIENT P
+		LEFT JOIN CHART C ON C.PATIENT_ID = P.PATIENT_ID
+		WHERE C.NEXT_VISIT_DATE = #{nextVisitDate}
+	</select>
 </mapper>

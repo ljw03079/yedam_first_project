@@ -19,7 +19,7 @@ public class MainMenu {
 	private EmployeeService dao = new EmployeeServiceImpl();
 	EmployeeVO vo = new EmployeeVO();
 	private Scanner sc = new Scanner(System.in);
-
+	
 	private void title() {
 		System.out.println("============================");
 		System.out.println(" Electronic Medical Record ");
@@ -40,6 +40,8 @@ public class MainMenu {
 			do {
 				title();
 				int key =sc.nextInt(); sc.nextLine();
+				System.out.println();
+				System.out.println();
 				switch(key) {
 				case 1:
 					em.run();
@@ -58,6 +60,10 @@ public class MainMenu {
 					sc.close();
 					System.out.println("[시스템을 종료합니다]");
 					break;
+				default:
+					System.out.println("[잘못된 작업번호 입니다.]");
+					System.out.println();
+					System.out.println();
 				}
 			}while(!b);
 		}
@@ -73,7 +79,12 @@ public class MainMenu {
 			System.out.print("원하는 작업을 선택하세요>> ");
 			int first = sc.nextInt();
 			sc.nextLine();
+			System.out.println();
+			System.out.println();
 			if (first == 1) {
+				System.out.println("============================");
+				System.out.println("            Login          ");
+				System.out.println("============================");
 				System.out.print("아이디를 입력하세요>> ");
 				vo.setEmployeeId(sc.nextLine());
 				System.out.print("패스워드를 입력하세요>> ");
@@ -83,6 +94,8 @@ public class MainMenu {
 				vo = dao.employeeSelect(vo);
 				if (vo != null) {
 					System.out.println("[" + vo.getEmployeeName() + "님 환영합니다]");
+					System.out.println();
+					System.out.println();
 					b = true;
 				} else {
 					System.out.println("[아이디 또는 패스워드가 일치하지 않습니다]");
@@ -119,9 +132,14 @@ public class MainMenu {
 				int n = dao.employeeInsert(registerVo);
 				if(n != 0) {
 					System.out.println("[회원 가입 완료]");
+					System.out.println();
+					System.out.println();
 				}else {
 					System.out.println("[회원 가입 실패]");
 				}
+				System.out.println("***시스템을 재시작하세요***");
+			} else {
+				System.out.println("[잘못된 작업번호 입니다.]");
 				System.out.println("***시스템을 재시작하세요***");
 			}
 		return b;

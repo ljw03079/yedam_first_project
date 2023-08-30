@@ -95,6 +95,14 @@ public class Desc {
 //	4.평가
 //	 제출: 학생고유폴더 -> 본인이름.zip(.jar로 빌드해서)
 //	 평가: 발표 및 소스코드 제출로 대체
+//	*maven 배포절차
+//	1. eclips -> project -> clean
+//	2. project name 에서 RunAs -> java Application
+//	3. main()의 Class 선택 후 실행
+//	 -정상 동작 여부 확인 후
+//	4. project name에서 RunAs -> maven install
+//	5. target 폴더에서 lib 및 .jar 확인
+//	6. cmd창에서 실행해본다. 오류발생시 위 과정을 재반복 한다.
 //	 
 //	 배포
 //	 : run as -> maven-clean: 지우기, maven-install: 배포까는거

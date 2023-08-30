@@ -14,6 +14,7 @@ public class MedicineMenu {
 	MedicineVO vo = new MedicineVO();
 	List<MedicineVO> medicine = dao.medicineSelect(vo);
 	
+	
 	private void medicineTitle() {
 		System.out.println("============================");
 		System.out.println("          약 물 조 회         ");
@@ -32,6 +33,8 @@ public class MedicineMenu {
 			medicineTitle();
 			int key = sc.nextInt();
 			sc.nextLine();
+			System.out.println();
+			System.out.println();
 			switch (key) {
 			case 1:
 				medicineSelectList();
@@ -44,6 +47,7 @@ public class MedicineMenu {
 				break;
 			default:
 				System.out.println("[잘못된 작업번호 입니다.]");
+				System.out.println();
 				System.out.println();
 			}
 		}while(!b);
@@ -62,6 +66,7 @@ public class MedicineMenu {
 			System.out.println("용량: "+m.getMedicineDose());
 			System.out.println("빈도: "+m.getMedicineFrequency());
 			System.out.println("복용법: "+m.getMedicineMethod());
+			System.out.println("효능: "+m.getEffect());
 			System.out.println("제약회사: "+m.getPharmCompany());
 			}
 		}else {
@@ -69,20 +74,23 @@ public class MedicineMenu {
 		}
 		System.out.println("-----------------------------");
 		System.out.println();
+		System.out.println();
 	}
 
 	private void medicineSelectList() {
 		System.out.println("============================");
 		System.out.println("        약 물 전 체 조 회       ");
 		System.out.println("============================");
-		System.out.println("\t약물명\t|\t용량\t|\t제약회사\t|");
-		System.out.println("-------------------------------------------------");
+		System.out.println("\t약물명\t|\t용량\t|\t효능\t|\t제약회사\t\t|");
+		System.out.println("--------------------------------------------------------------------------");
 		
 		for(MedicineVO m : medicines) {
-			System.out.print("\t"+m.getMedicineName()+"\t");
+			System.out.print("   "+m.getMedicineName()+"\t");
 			System.out.print("\t"+m.getMedicineDose()+"\t");
-			System.out.println("\t"+m.getPharmCompany()+"\t");
+			System.out.print("\t"+m.getEffect()+"\t");
+			System.out.println(" \t"+m.getPharmCompany()+"\t");
 		}
+		System.out.println();
 		System.out.println();
 	}
 }

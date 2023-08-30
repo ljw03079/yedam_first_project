@@ -20,8 +20,8 @@
 <update id="employeeUpdate" parameterType="co.yeadam.project.employee.service.EmployeeVO">
 	UPDATE EMPLOYEE
 	<set>
-		<if test="employeePassword != null">EMPLOYEE_PASSWORD = #{employeePassword}</if>
-		<if test="employeeName != null">EMPLOYEE_NAME = #{employeeName}</if>
+		<if test="employeePassword != null">EMPLOYEE_PASSWORD = #{employeePassword},</if>
+		<if test="employeeName != null">EMPLOYEE_NAME = #{employeeName},</if>
 		<if test="employeeJob != null">EMPLOYEE_JOB = #{employeeJob}</if>
 	</set>
 	WHERE EMPLOYEE_ID = #{employeeId}

@@ -30,11 +30,4 @@ public class ChartServiceImpl implements ChartService {
 		// TODO Auto-generated method stub
 		return map.chartUpdate(vo);
 	}
-
-	@Override
-	public int chartDelete(ChartVO vo) {
-		// TODO Auto-generated method stub
-		return map.chartDelete(vo);
-	}
-
 }

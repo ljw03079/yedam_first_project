@@ -9,4 +9,5 @@ public class MedicineVO {
 	private String medicineFrequency;
 	private String medicineMethod;
 	private String pharmCompany;
+	private String effect;
 }

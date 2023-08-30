@@ -17,6 +17,7 @@ public class ChartMenu {
 	List<ChartVO> charts = dao.chartSelect(c);
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
+	
 	private void Title() {
 		System.out.println("============================");
 		System.out.println("          진 료 기 록         ");
@@ -24,8 +25,7 @@ public class ChartMenu {
 		System.out.println("       1. 환자별 진료 기록      ");
 		System.out.println("       2. 진료 기록 추가       ");
 		System.out.println("       3. 진료 기록 수정       ");
-		System.out.println("       4. 진료 기록 삭제       ");
-		System.out.println("       5. 홈 가 기           ");
+		System.out.println("       4. 홈 가 기           ");
 		System.out.println("============================");
 		System.out.print("원하는 작업을 선택하세요>> ");
 	}
@@ -48,6 +48,8 @@ public class ChartMenu {
 		do {
 			Title();
 			int key = sc.nextInt(); sc.nextLine();
+			System.out.println();
+			System.out.println();
 			switch(key) {
 			case 1:
 				ChartSelect();
@@ -59,46 +61,21 @@ public class ChartMenu {
 				ChartUpdate();
 				break;
 			case 4:
-				ChartDelete();
-				break;
-			case 5:
 				b=true;
 				break;
 			default:
 				System.out.println("[잘못된 작업번호 입니다.]");
 				System.out.println();
+				System.out.println();
 			}
 		}while(!b);
-	}
-
-	private void ChartDelete() {
-		System.out.print("삭제할 진료기록의 환자번호를 입력하세요>> ");
-		int pi = sc.nextInt(); sc.nextLine();
-		c.setPatientId(pi);
-		System.out.print("담당의사 번호를 입력하세요>> ");
-		int en = sc.nextInt(); sc.nextLine();
-		c.setEmployeeNum(en);
-		System.out.print("삭제할 진료기록의 방문날짜를 입력하세요(yyyy-MM-dd HH:mm:ss)>> ");
-		Date vd;
-		try {
-			vd = sdf.parse(sc.nextLine());
-			c.setVisitDate(vd);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		int n = dao.chartDelete(c);
-		if (n != 0) {
-			System.out.println("[차트 삭제 성공]");
-			System.out.println();
-		} else {
-			System.out.println("[차트 삭제 실패]");
-			System.out.println();
-		}
 	}
 
 	private void ChartUpdate() {
 		modifyTitle();
 		int key = sc.nextInt(); sc.nextLine();
+		System.out.println();
+		System.out.println();
 		switch(key) {
 		case 1:
 			c = updateTitle();
@@ -117,15 +94,19 @@ public class ChartMenu {
 			break;
 		case 3:
 			c = updateTitle();
-			System.out.print("약물명을 수정하세요>> ");
+			System.out.print("약물명을 입력하세요>> ");
 			c.setMedicineName(sc.nextLine());
-			System.out.print("용량을 수정하세요>> ");
-			c.setMedicineDose(sc.nextLine());
+			System.out.print("용량을 입력하세요>> ");
+			int dose = sc.nextInt(); sc.nextLine(); 
+			c.setMedicineDose(dose);
+			System.out.print("복용법을 입력하세요>> ");
+			c.setMedicineMethod(sc.nextLine());
 			break;
 		case 4:
 			return;
 		default:
 			System.out.println("[잘못된 작업번호 입니다.]");
+			System.out.println();
 			System.out.println();
 			return;
 		}
@@ -134,8 +115,10 @@ public class ChartMenu {
 		if(n != 0) {
 			System.out.println("[차트 수정 성공]");
 			System.out.println();
+			System.out.println();
 		}else {
 			System.out.println("[차트 수정 실패]");
+			System.out.println();
 			System.out.println();
 		}
 	}
@@ -159,6 +142,7 @@ public class ChartMenu {
 	}
 	
 	private void ChartInsert() {
+		Date date = new Date();
 		System.out.println("============================");
 		System.out.println("          차 트 작 성         ");
 		System.out.println("============================");
@@ -179,8 +163,11 @@ public class ChartMenu {
 		String mn = sc.nextLine();
 		c.setMedicineName(mn);;
 		System.out.print("약물용량을 입력하세요>> ");
-		String md = sc.nextLine();
-		c.setMedicineDose(md);;
+		int dose = sc.nextInt(); sc.nextLine();
+		c.setMedicineDose(dose);
+		System.out.print("약물복용법을 입력하세요>> ");
+		String mm = sc.nextLine();
+		c.setMedicineMethod(mm);
 		System.out.print("다음방문날짜를 입력하세요(yyyy-MM-dd HH:mm:ss)>> ");
 		Date nvd;
 		try {
@@ -189,14 +176,16 @@ public class ChartMenu {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+		c.setVisitDate(date);
 		int n = dao.chartInsert(c);
 		if(n != 0) {
 			System.out.println("[환자 등록 완료]");
 			charts.add(c);
 			System.out.println();
+			System.out.println();
 		}else {
 			System.out.println("[환자 등록 실패]");
+			System.out.println();
 			System.out.println();
 		}
 	}
@@ -216,15 +205,18 @@ public class ChartMenu {
 				System.out.println("방문날짜: "+sdf.format(c.getVisitDate()));
 				System.out.println("다음방문날짜: "+sdf.format(c.getNextVisitDate()));
 				System.out.println("질병: "+c.getDisease());
-				System.out.println("약물명: "+c.getMedicineName()+", 용량: "+c.getMedicineDose());
+				System.out.println("약물명: "+c.getMedicineName()+", 용량: "+c.getMedicineDose()+"mg");
+				System.out.println("약물복용법: "+c.getMedicineMethod());
 				System.out.println("진료기록: "+c.getChartContent());
 				System.out.println("주치의: "+c.getEmployeeNum());
 			}
 		}else {
 			System.out.println("[입력하신 번호는 존재하지 않습니다]");
 			System.out.println();
+			System.out.println();
 		}
 		System.out.println("-----------------------------");
+		System.out.println();
 		System.out.println();
 	}
 }

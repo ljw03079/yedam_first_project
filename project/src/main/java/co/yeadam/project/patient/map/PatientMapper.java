@@ -1,7 +1,9 @@
 package co.yeadam.project.patient.map;
 
 import java.util.List;
+import java.util.Map;
 
+import co.yeadam.project.chart.service.ChartVO;
 import co.yeadam.project.patient.service.PatientVO;
 
 public interface PatientMapper {
@@ -10,4 +12,5 @@ public interface PatientMapper {
 	int patientInsert(PatientVO vo);
 	int patientUpdate(PatientVO vo);
 	int patientDelete(PatientVO vo);
+	List<Map<String,Object>> patientJoin(ChartVO vo);
 }

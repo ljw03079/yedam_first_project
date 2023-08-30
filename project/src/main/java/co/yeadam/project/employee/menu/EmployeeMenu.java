@@ -45,6 +45,8 @@ public class EmployeeMenu {
 			do {
 				EmployeeTitle();
 				int key = sc.nextInt(); sc.nextLine();
+				System.out.println();
+				System.out.println();
 				switch(key) {
 				case 1:
 					EmployeeSelectList();
@@ -64,6 +66,7 @@ public class EmployeeMenu {
 				default:
 					System.out.println("[잘못된 작업번호 입니다.]");
 					System.out.println();
+					System.out.println();
 				}
 			}while(!b);
 		}
@@ -80,20 +83,23 @@ public class EmployeeMenu {
 			if (employee != null) {
 				EmployeeVO e = new EmployeeVO();
 				e.setEmployeeId(employee.getEmployeeId());
-				System.out.println("정말 삭제하시겠습니까?(예:1, 아니오:2)>> ");
+				System.out.print("정말 삭제하시겠습니까?(예:1, 아니오:2)>> ");
 				int answer = sc.nextInt();
 				if(answer == 1) {
 					int n = dao.employeeDelete(e);
 					if(n != 0) {
 						System.out.println("[계정 삭제 성공]");
 						System.out.println();
+						System.out.println();
 					}else {
 						System.out.println("[계정 삭제 실패]");
+						System.out.println();
 						System.out.println();
 					}
 				}
 			} else {
 				System.out.println("[아이디 또는 패스워드가 일치하지 않습니다]");
+				System.out.println();
 				System.out.println();
 			}
 		}
@@ -112,6 +118,8 @@ public class EmployeeMenu {
 				e.setEmployeeId(employee.getEmployeeId());
 				subTitle();
 				int key = sc.nextInt(); sc.nextLine();
+				System.out.println();
+				System.out.println();
 				switch(key) {
 				case 1:
 					System.out.print("수정할 비밀먼호를 입력하세요>> ");
@@ -142,18 +150,22 @@ public class EmployeeMenu {
 				default:
 					System.out.println("[잘못된 작업번호 입니다.]");
 					System.out.println();
+					System.out.println();
 				}
 				int n = dao.employeeUpdate(e);
 				
 				if(n != 0) {
 					System.out.println("[내 정보 수정 성공]");
 					System.out.println();
+					System.out.println();
 				}else {
 					System.out.println("[내 정보 수정 실패]");
+					System.out.println();
 					System.out.println();
 				}
 			} else {
 				System.out.println("[아이디 또는 패스워드가 일치하지 않습니다]");
+				System.out.println();
 				System.out.println();
 			}
 		}
@@ -173,8 +185,10 @@ public class EmployeeMenu {
 				System.out.println("직원번호: "+employee.getEmployeeNum());
 				System.out.println("-----------------------------");
 				System.out.println();
+				System.out.println();
 			}else {
 				System.out.println("[입력하신 이름은 존재하지 않습니다]");
+				System.out.println();
 				System.out.println();
 			}
 		}
@@ -192,6 +206,7 @@ public class EmployeeMenu {
 				System.out.print("\t"+e.getEmployeeJob()+"\t");
 				System.out.println("\t"+e.getEmployeeNum()+"\t");
 			}
+			System.out.println();
 			System.out.println();
 		}
 		

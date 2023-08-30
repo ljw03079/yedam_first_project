@@ -1,9 +1,11 @@
 package co.yeadam.project.patient.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import co.yeadam.project.chart.service.ChartVO;
 import co.yeadam.project.common.DataSource;
 import co.yeadam.project.patient.map.PatientMapper;
 import co.yeadam.project.patient.service.PatientService;
@@ -37,5 +39,10 @@ public class PatientServiceImpl implements PatientService {
 	public int patientDelete(PatientVO vo) {
 		// TODO Auto-generated method stub
 		return map.patientDelete(vo);
+	}
+	@Override
+	public List<Map<String, Object>> patientJoin(ChartVO vo) {
+		// TODO Auto-generated method stub
+		return map.patientJoin(vo);
 	}
 }
