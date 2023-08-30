@@ -29,10 +29,10 @@
 		parameterType="co.yeadam.project.patient.service.PatientVO">
 		DELETE FROM PATIENT WHERE PATIENT_ID = #{patientId}
 	</delete>
-	<select id="patientJoin" resultType="Map">
+	<select id="patientJoin" resultType="map">
 		SELECT C.NEXT_VISIT_DATE, P.PATIENT_ID, P.PATIENT_NAME, P.PATIENT_GENDER, P.PATIENT_AGE, P.EMPLOYEE_NUM, C.DISEASE
-		FROM PATIENT P
-		LEFT JOIN CHART C ON C.PATIENT_ID = P.PATIENT_ID
-		WHERE C.NEXT_VISIT_DATE = #{nextVisitDate}
+		FROM PATIENT P, CHART C
+		WHERE C.PATIENT_ID = P.PATIENT_ID
+		AND C.NEXT_VISIT_DATE = #{nextVisitDate}
 	</select>
 </mapper>

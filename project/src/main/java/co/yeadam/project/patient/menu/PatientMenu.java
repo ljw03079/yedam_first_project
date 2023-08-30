@@ -315,13 +315,13 @@ public class PatientMenu {
 			System.out.println();
 			break;
 		case 3:
-			chartJoin();
 			System.out.println();
 			System.out.println("============================");
 			System.out.println("         날 짜 별 조 회        ");
 			System.out.println("============================");
 			System.out.println("  날짜  |  환자번호  |  이름  |  성별  |  나이  |  담당의번호  |  질병   |");
 			System.out.println("---------------------------------------------------------------");
+			chartJoin();
 			//System.out.println("<<환자수: "+i+">>");
 			break;
 		case 4:

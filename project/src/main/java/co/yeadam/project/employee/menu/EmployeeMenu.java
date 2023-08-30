@@ -3,7 +3,6 @@ package co.yeadam.project.employee.menu;
 import java.util.List;
 import java.util.Scanner;
 
-import co.yeadam.project.MainMenu;
 import co.yeadam.project.common.SHA256;
 import co.yeadam.project.employee.service.EmployeeService;
 import co.yeadam.project.employee.service.EmployeeVO;
