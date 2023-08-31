@@ -41,8 +41,8 @@ public class PatientServiceImpl implements PatientService {
 		return map.patientDelete(vo);
 	}
 	@Override
-	public List<Map<String, Object>> patientJoin(String s) {
+	public List<Map<String, Object>> patientJoin(ChartVO cvo) {
 		// TODO Auto-generated method stub
-		return map.patientJoin(s);
+		return map.patientJoin(cvo);
 	}
 }

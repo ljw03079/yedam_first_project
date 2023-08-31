@@ -6,7 +6,7 @@ import lombok.Data;
 
 
 @Data
-public class ChartVO {
+public class ChartVO{
 	private String chartContent;
 	private Date visitDate;
 	private Date nextVisitDate;
@@ -15,5 +15,5 @@ public class ChartVO {
 	private int employeeNum;
 	private String medicineName;
 	private int medicineDose;
-	private String medicineMethod;
+	private String medicineMethod;	
 }

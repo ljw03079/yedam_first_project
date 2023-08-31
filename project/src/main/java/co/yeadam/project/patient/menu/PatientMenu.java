@@ -19,6 +19,7 @@ public class PatientMenu {
 	private PatientService dao = new PatientServiceImpl();
 	private ChartService cdao = new ChartServiceImpl();
 	List<PatientVO> patients = dao.patientSelectList();
+	List<ChartVO> charts = cdao.chartSelectList();
 	PatientVO p = new PatientVO();
 	Date date = new Date();
 	SimpleDateFormat sdfY = new SimpleDateFormat("yyyy");
@@ -276,13 +277,12 @@ public class PatientMenu {
 		switch (key) {
 		case 1:
 			int idxD = 0;
-			System.out.println("============================");
-			System.out.println("         의 사 별 조 회        ");
-			System.out.println("============================");
 			System.out.print("조회할 의사의 직원번호를 입력하세요>> ");
 			int en = sc.nextInt();
 			sc.nextLine();
-			System.out.println();
+			System.out.println("============================");
+			System.out.println("         의 사 별 조 회        ");
+			System.out.println("============================");
 			System.out.println("  환자번호  |  이름  |  성별  |  나이  |  담당의번호   |");
 			System.out.println("----------------------------------------------");
 			for (int i = 0; i < patients.size(); i++) {
@@ -323,10 +323,8 @@ public class PatientMenu {
 			System.out.println("============================");
 			System.out.println("         날 짜 별 조 회        ");
 			System.out.println("============================");
-			System.out.println("  날짜  |  환자번호  |  이름  |  성별  |  나이  |  담당의번호  |  질병   |");
-			System.out.println("---------------------------------------------------------------");
 			chartJoin();
-			// System.out.println("<<환자수: "+i+">>");
+
 			break;
 		case 4:
 			break;
@@ -339,13 +337,25 @@ public class PatientMenu {
 
 	public void chartJoin() {
 		List<Map<String, Object>> lists = new ArrayList<Map<String, Object>>();
+		int count = 0;
 		System.out.print("조회할 날짜를 입력하세요(yyyy-MM-dd)>> ");
 		String searchDate = sc.nextLine();
-		lists = dao.patientJoin(searchDate);
-		for (Map<String, Object> l : lists) {
-			System.out.println(l.get("NEXT_VISIT_DATE") + "\t" + l.get("PATIENT_ID") + "\t" + l.get("PATIENT_NAME")
-					+ "\t" + l.get("PATIENT_GENDER") + "\t" + l.get("PATIENT_AGE") + "\t" + l.get("EMPLOYEE_NUM") + "\t"
-					+ l.get("DISEASE"));
+		System.out.println();
+		System.out.println("   환자번호   |   이름   |   성별   |   나이   |   담당의번호   |   질병\t|");
+		System.out.println("------------------------------------------------------------------");
+		for (int i = 0; i < charts.size(); i++) {
+			if (sdf.format(charts.get(i).getNextVisitDate()).equals(searchDate)) {
+				lists = dao.patientJoin(charts.get(i));
+			}
 		}
+		for (Map<String, Object> l : lists) {
+			System.out
+					.println("\t" + l.get("PATIENT_ID") + "\t" + l.get("PATIENT_NAME") + "\t  " + l.get("PATIENT_GENDER")
+							+ " \t   " + l.get("PATIENT_AGE") + "\t\t" + l.get("EMPLOYEE_NUM") + "\t   " + l.get("DISEASE"));
+			count += 1;
+		}
+		System.out.println();
+		System.out.println("<<환자수: " + count + ">>");
+		System.out.println();
 	}
 }

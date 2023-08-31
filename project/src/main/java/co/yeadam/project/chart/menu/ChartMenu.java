@@ -20,7 +20,8 @@ public class ChartMenu {
 	ChartVO c = new ChartVO();
 	List<ChartVO> charts = dao.chartSelect(c);
 	List<EmployeeVO> employees = edao.employeeSelectList();
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	SimpleDateFormat sdfs = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	
 	private void Title() {
@@ -90,10 +91,11 @@ public class ChartMenu {
 		case 2:
 			c = updateTitle();
 			System.out.print("다음 방문날짜를 수정하세요>> ");
+			Date nextDate;
 			try {
-				c.setNextVisitDate(sdf.parse(sc.nextLine()));
+				nextDate = sdf.parse(sc.nextLine());
+				c.setNextVisitDate(nextDate);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			break;
@@ -135,7 +137,7 @@ public class ChartMenu {
 		System.out.print("수정할 차트의 방문날짜를 입력하세요(yyyy-MM-dd HH:mm:ss)>> ");
 		Date vd;
 		try {
-			vd = sdf.parse(sc.nextLine());
+			vd = sdfs.parse(sc.nextLine());
 			c.setVisitDate(vd);
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -147,7 +149,7 @@ public class ChartMenu {
 	}
 	
 	private void ChartInsert() {
-		Date date = new Date();
+		//Date date = new Date();
 		System.out.println("============================");
 		System.out.println("          차 트 작 성         ");
 		System.out.println("============================");
@@ -173,7 +175,7 @@ public class ChartMenu {
 		System.out.print("약물복용법을 입력하세요>> ");
 		String mm = sc.nextLine();
 		c.setMedicineMethod(mm);
-		System.out.print("다음방문날짜를 입력하세요(yyyy-MM-dd HH:mm:ss)>> ");
+		System.out.print("다음방문날짜를 입력하세요(yyyy-MM-dd HH:mm)>> ");
 		Date nvd;
 		try {
 			nvd = sdf.parse(sc.nextLine());
@@ -181,7 +183,7 @@ public class ChartMenu {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		c.setVisitDate(date);
+		//c.setVisitDate(date);
 		int n = dao.chartInsert(c);
 		if(n != 0) {
 			System.out.println("[환자 등록 완료]");
@@ -207,7 +209,7 @@ public class ChartMenu {
 		if(charts != null) {
 			for(ChartVO c : charts) {
 				System.out.println("-----------------------------");
-				System.out.println("방문날짜: "+sdf.format(c.getVisitDate()));
+				System.out.println("방문날짜: "+sdfs.format(c.getVisitDate()));
 				System.out.println("다음방문날짜: "+sdf.format(c.getNextVisitDate()));
 				System.out.println("질병: "+c.getDisease());
 				System.out.println("약물명: "+c.getMedicineName()+", 용량: "+c.getMedicineDose()+"mg");

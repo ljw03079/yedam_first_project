@@ -30,4 +30,10 @@ public class ChartServiceImpl implements ChartService {
 		// TODO Auto-generated method stub
 		return map.chartUpdate(vo);
 	}
+
+	@Override
+	public List<ChartVO> chartSelectList() {
+		// TODO Auto-generated method stub
+		return map.chartSelectList();
+	}
 }

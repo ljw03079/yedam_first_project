@@ -12,5 +12,5 @@ public interface PatientMapper {
 	int patientInsert(PatientVO vo);
 	int patientUpdate(PatientVO vo);
 	int patientDelete(PatientVO vo);
-	List<Map<String,Object>> patientJoin(String s);
+	List<Map<String,Object>> patientJoin(ChartVO cvo);
 }

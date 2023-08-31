@@ -4,6 +4,7 @@
 	<select id="patientSelectList"
 		resultType="co.yeadam.project.patient.service.PatientVO">
 		SELECT * FROM PATIENT
+		ORDER BY PATIENT_ID
 	</select>
 	<select id="patientSelect"
 		resultType="co.yeadam.project.patient.service.PatientVO">
@@ -29,10 +30,12 @@
 		parameterType="co.yeadam.project.patient.service.PatientVO">
 		DELETE FROM PATIENT WHERE PATIENT_ID = #{patientId}
 	</delete>
+	
 	<select id="patientJoin" resultType="map">
 		SELECT C.NEXT_VISIT_DATE, P.PATIENT_ID, P.PATIENT_NAME, P.PATIENT_GENDER, P.PATIENT_AGE, P.EMPLOYEE_NUM, C.DISEASE
-		FROM PATIENT AS P, CHART AS C
+		FROM PATIENT P, CHART C
 		WHERE C.PATIENT_ID = P.PATIENT_ID
 		AND C.NEXT_VISIT_DATE = #{nextVisitDate}
+		ORDER BY C.NEXT_VISIT_DATE
 	</select>
 </mapper>

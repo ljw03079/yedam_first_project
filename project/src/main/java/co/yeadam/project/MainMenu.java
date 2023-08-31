@@ -1,5 +1,6 @@
 package co.yeadam.project;
 
+import java.util.List;
 import java.util.Scanner;
 
 import co.yeadam.project.chart.menu.ChartMenu;
@@ -19,6 +20,9 @@ public class MainMenu {
 	private Scanner sc = new Scanner(System.in);
 	private EmployeeService dao = new EmployeeServiceImpl();
 	
+	private String logId = "";//
+	private List<EmployeeVO> employees = dao.employeeSelectList();//
+	
 	private void title() {
 		System.out.println("============================");
 		System.out.println(" Electronic Medical Record ");
@@ -34,8 +38,16 @@ public class MainMenu {
 
 	public void run() {
 		boolean b = false;
-		
+
 		if(EmployeeLogin()) {
+			
+			int en = 0;//
+			for(int i=0; i<employees.size(); i++) {//
+				if(employees.get(i).getEmployeeId().equals(logId)) {//
+					en = employees.get(i).getEmployeeNum();//
+				}//
+			}//
+			
 			do {
 				title();
 				int key =sc.nextInt(); sc.nextLine();
@@ -52,12 +64,17 @@ public class MainMenu {
 					mm.run();
 					break;
 				case 4:
-					cm.run();
+					if(en == 1) {//
+						cm.run();//				
+					} else {//
+						System.out.println("[권한이 없습니다.]");//
+						System.out.println();//
+					}//
 					break;
 				case 5:
 					b=true;
 					sc.close();
-					System.out.println("[시스템을 종료합니다]");
+					System.out.println("[시스템을 종료합니다.]");
 					break;
 				default:
 					System.out.println("[잘못된 작업번호 입니다.]");
@@ -93,6 +110,8 @@ public class MainMenu {
 
 			vo = dao.employeeSelect(vo);
 			if (vo != null) {
+				logId = vo.getEmployeeId();//
+				
 				System.out.println("[" + vo.getEmployeeName() + "님 환영합니다]");
 				System.out.println();
 				System.out.println();

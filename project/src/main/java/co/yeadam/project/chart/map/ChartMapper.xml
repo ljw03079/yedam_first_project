@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yeadam.project.chart.map.ChartMapper">
+<select id="chartSelectList" resultType="co.yeadam.project.chart.service.ChartVO">
+	SELECT * FROM CHART
+</select>
 <select id="chartSelect" resultType="co.yeadam.project.chart.service.ChartVO">
 	SELECT * FROM CHART
 	WHERE PATIENT_ID = #{patientId}
+	ORDER BY VISIT_DATE
 </select>
 <insert id="chartInsert" parameterType="co.yeadam.project.chart.service.ChartVO">
 	INSERT INTO CHART (CHART_CONTENT, VISIT_DATE, NEXT_VISIT_DATE, DISEASE, PATIENT_ID, EMPLOYEE_NUM, MEDICINE_NAME, MEDICINE_DOSE, MEDICINE_METHOD)
-	VALUES (#{chartContent}, #{visitDate}, #{nextVisitDate}, #{disease}, #{patientId}, #{employeeNum}, #{medicineName}, #{medicineDose}, #{medicineMethod})
+	VALUES (#{chartContent}, SYSDATE, #{nextVisitDate}, #{disease}, #{patientId}, #{employeeNum}, #{medicineName}, #{medicineDose}, #{medicineMethod})
 </insert>
 <update id="chartUpdate" parameterType="co.yeadam.project.chart.service.ChartVO">
 	UPDATE CHART

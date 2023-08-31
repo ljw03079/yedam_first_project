@@ -3,6 +3,7 @@
 <mapper namespace="co.yeadam.project.employee.map.EmployeeMapper">
 <select id="employeeSelectList" resultType="co.yeadam.project.employee.service.EmployeeVO">
 	SELECT * FROM EMPLOYEE
+	ORDER BY EMPLOYEE_NUM
 </select>
 <select id="employeeSelect" resultType="co.yeadam.project.employee.service.EmployeeVO">
 	SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID = #{employeeId}
